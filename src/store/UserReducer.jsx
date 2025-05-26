@@ -18,18 +18,19 @@ const userSlice = createSlice({
              state.users = state.users.filter(user => user.id !== action.payload.id);
         },
         updateUsers: (state, action) => {
-            const {id, name, email, age, address, phone, gender, status, hobbies, Image} =  action.payload;
-            const userNumber = state.find((users) => users.id === id);
-            if (userNumber) {
-                userNumber.name = name;
-                userNumber.email = email;
-                userNumber.age = age;
-                userNumber.address = address;
-                userNumber.phone = phone;
-                userNumber.gender = gender;
-                userNumber.status = status;
-                userNumber.hobbies = hobbies;
-                userNumber.Image = Image;
+            const {id, name, email, age, address, phone, gender,countries, status, hobbies, Image} =  action.payload;
+            const user  = state.users.find((user) => user.id === id);
+            if (user) {
+                user.name = name;
+                user.email = email;
+                user.age = age;
+                user.address = address;
+                user.phone = phone;
+                user.countries = countries;
+                user.gender = gender;
+                user.status = status;
+                user.hobbies = hobbies;
+                user.Image = Image;
             }
             else {
                 console.error(`User with id ${id} not found.`);
@@ -37,16 +38,11 @@ const userSlice = createSlice({
         }
         
 
-        // You can define reducers here later
-        // Example:
-        // addUser: (state, action) => {
-        //     state.users.push(action.payload);
-        // },
+
     },
 });
 
-// If you define actions, export them like this:
-// export const { addUser } = userSlice.actions;
+
 
 // ✅ Correct default export
  export const {updateUsers} = userSlice.actions;
